@@ -1,0 +1,534 @@
+/* ================================
+  
+   UTILITIES (u-*)
+   Naming idea:
+   u-margin-bottom-8  => margin-bottom: 8rem
+   u-padding-x-2      => padding-left/right: 2rem
+   u-text-center      => text-align: center
+   Author: Benjamin Olawoye
+================================ */
+
+/* =========================================
+   Utility system ( with loops)
+   Output examples:
+   .u-text-center
+   .u-margin-bottom-8
+   .u-padding-x-2
+   .u-fs-16
+   .u-shadow-md
+========================================= */
+
+/* -------- Scales (can edit these once to fit project requirement) -------- */
+$u-space: (
+  "0": 0,
+  "0-5": 0.5rem,
+  "1": 1rem,
+  "1-5": 1.5rem,
+  "2": 2rem,
+  "2-5": 2.5rem,
+  "3": 3rem,
+  "4": 4rem,
+  "6": 6rem,
+  "8": 8rem,
+  "10": 10rem,
+  "12": 12rem,
+  "16": 16rem,
+);
+
+$u-font-sizes: (
+  12: 1.2rem,
+  14: 1.4rem,
+  16: 1.6rem,
+  18: 1.8rem,
+  20: 2rem,
+  24: 2.4rem,
+  32: 3.2rem,
+  40: 4rem,
+  48: 4.8rem,
+);
+
+$u-font-weights: (300, 400, 500, 600, 700);
+
+$u-line-heights: (
+  1: 1,
+  12: 1.2,
+  14: 1.4,
+  16: 1.6,
+  18: 1.8,
+);
+
+$u-radius: (
+  0: 0,
+  2: 0.2rem,
+  4: 0.4rem,
+  8: 0.8rem,
+  12: 1.2rem,
+  16: 1.6rem,
+  pill: 9999px,
+);
+
+$u-shadows: (
+  none: none,
+  sm: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.08),
+  md: 0 1rem 2.4rem rgba(0, 0, 0, 0.12),
+  lg: 0 2rem 4.8rem rgba(0, 0, 0, 0.16),
+  card: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.1),
+  lift: 0 1.6rem 4.8rem rgba(0, 0, 0, 0.14),
+);
+
+$u-z: (0, 1, 5, 10, 50, 100, 999);
+
+/* Optional: tweak default border color */
+$u-border-color: rgba(0, 0, 0, 0.12);
+
+/* =========================================
+   Utilities
+========================================= */
+.u {
+  /* -------- TEXT -------- */
+  &-text- {
+    &left {
+      text-align: left;
+    }
+    &center {
+      text-align: center;
+    }
+    &right {
+      text-align: right;
+    }
+    &justify {
+      text-align: justify;
+    }
+
+    &uppercase {
+      text-transform: uppercase;
+    }
+    &lowercase {
+      text-transform: lowercase;
+    }
+    &capitalize {
+      text-transform: capitalize;
+    }
+
+    &nowrap {
+      white-space: nowrap;
+    }
+    &break {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    &muted {
+      opacity: 0.75;
+    }
+  }
+
+  /* -------- FONT -------- */
+  &-fw- {
+    @each $w in $u-font-weights {
+      &#{$w} {
+        font-weight: $w;
+      }
+    }
+  }
+
+  &-fs- {
+    @each $k, $v in $u-font-sizes {
+      &#{$k} {
+        font-size: $v;
+      }
+    }
+  }
+
+  &-lh- {
+    @each $k, $v in $u-line-heights {
+      &#{$k} {
+        line-height: $v;
+      }
+    }
+  }
+
+  /* -------- DISPLAY -------- */
+  &-d- {
+    &block {
+      display: block;
+    }
+    &inline {
+      display: inline;
+    }
+    &inline-block {
+      display: inline-block;
+    }
+    &none {
+      display: none;
+    }
+  }
+
+  /* -------- FLEX -------- */
+  &-flex- {
+    &row {
+      display: flex;
+      flex-direction: row;
+    }
+    &col {
+      display: flex;
+      flex-direction: column;
+    }
+    &wrap {
+      flex-wrap: wrap;
+    }
+    &nowrap {
+      flex-wrap: nowrap;
+    }
+    &center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &align- {
+      &start {
+        align-items: flex-start;
+      }
+      &center {
+        align-items: center;
+      }
+      &end {
+        align-items: flex-end;
+      }
+      &stretch {
+        align-items: stretch;
+      }
+    }
+
+    &justify- {
+      &start {
+        justify-content: flex-start;
+      }
+      &center {
+        justify-content: center;
+      }
+      &end {
+        justify-content: flex-end;
+      }
+      &between {
+        justify-content: space-between;
+      }
+      &around {
+        justify-content: space-around;
+      }
+      &evenly {
+        justify-content: space-evenly;
+      }
+    }
+
+    &gap- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          gap: $v;
+        }
+      }
+    }
+  }
+
+  /* -------- GRID -------- */
+  &-grid- {
+    &on {
+      display: grid;
+    }
+    &center {
+      place-items: center;
+    }
+
+    &gap- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          gap: $v;
+        }
+      }
+    }
+
+    &cols- {
+      &2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      &3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      &4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      &auto {
+        grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+      }
+    }
+  }
+
+  /* -------- SIZING -------- */
+  &-w- {
+    &100 {
+      width: 100%;
+    }
+    &auto {
+      width: auto;
+    }
+    &fit {
+      width: fit-content;
+    }
+  }
+
+  &-h- {
+    &100 {
+      height: 100%;
+    }
+    &auto {
+      height: auto;
+    }
+    &vh-100 {
+      height: 100vh;
+    }
+  }
+
+  &-mw- {
+    &container {
+      max-width: 120rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  /* -------- SPACING (loops) -------- */
+  &-margin- {
+    &0 {
+      margin: 0;
+    }
+    &auto {
+      margin: auto;
+    }
+
+    &top- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          margin-top: $v;
+        }
+      }
+    }
+    &right- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          margin-right: $v;
+        }
+      }
+    }
+    &bottom- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          margin-bottom: $v;
+        }
+      }
+    }
+    &left- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          margin-left: $v;
+        }
+      }
+    }
+
+    &x- {
+      &auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @each $k, $v in $u-space {
+        &#{$k} {
+          margin-left: $v;
+          margin-right: $v;
+        }
+      }
+    }
+    &y- {
+      &auto {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+      @each $k, $v in $u-space {
+        &#{$k} {
+          margin-top: $v;
+          margin-bottom: $v;
+        }
+      }
+    }
+  }
+
+  &-padding- {
+    &0 {
+      padding: 0;
+    }
+
+    &top- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          padding-top: $v;
+        }
+      }
+    }
+    &right- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          padding-right: $v;
+        }
+      }
+    }
+    &bottom- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          padding-bottom: $v;
+        }
+      }
+    }
+    &left- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          padding-left: $v;
+        }
+      }
+    }
+
+    &x- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          padding-left: $v;
+          padding-right: $v;
+        }
+      }
+    }
+    &y- {
+      @each $k, $v in $u-space {
+        &#{$k} {
+          padding-top: $v;
+          padding-bottom: $v;
+        }
+      }
+    }
+  }
+
+  /* -------- BORDER / RADIUS -------- */
+  &-border- {
+    &0 {
+      border: 0;
+    }
+    &1 {
+      border: 1px solid $u-border-color;
+    }
+    &2 {
+      border: 2px solid $u-border-color;
+    }
+
+    &round- {
+      @each $k, $v in $u-radius {
+        &#{$k} {
+          border-radius: $v;
+        }
+      }
+    }
+  }
+
+  /* -------- SHADOWS -------- */
+  &-shadow- {
+    @each $k, $v in $u-shadows {
+      &#{$k} {
+        box-shadow: $v;
+      }
+    }
+  }
+
+  /* -------- POSITION -------- */
+  &-pos- {
+    &rel {
+      position: relative;
+    }
+    &abs {
+      position: absolute;
+    }
+    &fixed {
+      position: fixed;
+    }
+    &sticky {
+      position: sticky;
+    }
+  }
+
+  &-top-0 {
+    top: 0;
+  }
+  &-right-0 {
+    right: 0;
+  }
+  &-bottom-0 {
+    bottom: 0;
+  }
+  &-left-0 {
+    left: 0;
+  }
+
+  /* -------- Z-INDEX -------- */
+  &-z- {
+    @each $v in $u-z {
+      &#{$v} {
+        z-index: $v;
+      }
+    }
+  }
+
+  /* -------- OVERFLOW -------- */
+  &-overflow- {
+    &hidden {
+      overflow: hidden;
+    }
+    &auto {
+      overflow: auto;
+    }
+    &scroll {
+      overflow: scroll;
+    }
+    &x-hidden {
+      overflow-x: hidden;
+    }
+    &y-hidden {
+      overflow-y: hidden;
+    }
+  }
+
+  /* -------- VISIBILITY / INTERACTION -------- */
+  &-vis- {
+    &hidden {
+      visibility: hidden;
+    }
+    &visible {
+      visibility: visible;
+    }
+  }
+
+  &-pe- {
+    &none {
+      pointer-events: none;
+    }
+    &auto {
+      pointer-events: auto;
+    }
+  }
+
+  /* -------- IMAGES -------- */
+  &-img- {
+    &cover {
+      object-fit: cover;
+    }
+    &contain {
+      object-fit: contain;
+    }
+    &block {
+      display: block;
+    }
+  }
+}
