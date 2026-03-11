@@ -3,6 +3,9 @@ $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
 $color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
 $color-white: #fff;
 $color-black: #000;
 $color-grey-light-1: #f7f7f7;
@@ -26,3 +29,6 @@ $gutter-horizontal: 6rem;
 // Shadows
 $shadow-light: 0 1.5rem 4rem rgba($color-black, 0.15);
 $shadow-dark: 0 2.5rem 4rem rgba($color-black, 0.2);
+
+// Radiud
+$default-border-radius: 3px;

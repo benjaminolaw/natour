@@ -13,6 +13,12 @@
 @use "components/composition" as *;
 @use "components/feature-box" as *;
 @use "components/card" as *;
+@use "components/story" as *;
+@use "components/bg-video" as *;
+@use "components/form" as *;
+@use "components/popup" as *;
 
 @use "layout/header" as *;
 @use "layout/grid" as *;
+@use "layout/footer" as *;
+@use "layout/navigation" as *;

@@ -309,53 +309,53 @@ $u-border-color: rgba(0, 0, 0, 0.12);
     &top- {
       @each $k, $v in $u-space {
         &#{$k} {
-          margin-top: $v;
+          margin-top: $v !important;
         }
       }
     }
     &right- {
       @each $k, $v in $u-space {
         &#{$k} {
-          margin-right: $v;
+          margin-right: $v !important;
         }
       }
     }
     &bottom- {
       @each $k, $v in $u-space {
         &#{$k} {
-          margin-bottom: $v;
+          margin-bottom: $v !important;
         }
       }
     }
     &left- {
       @each $k, $v in $u-space {
         &#{$k} {
-          margin-left: $v;
+          margin-left: $v !important;
         }
       }
     }
 
     &x- {
       &auto {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
       @each $k, $v in $u-space {
         &#{$k} {
-          margin-left: $v;
-          margin-right: $v;
+          margin-left: $v !important;
+          margin-right: $v !important;
         }
       }
     }
     &y- {
       &auto {
-        margin-top: auto;
-        margin-bottom: auto;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
       }
       @each $k, $v in $u-space {
         &#{$k} {
-          margin-top: $v;
-          margin-bottom: $v;
+          margin-top: $v !important;
+          margin-bottom: $v !important;
         }
       }
     }
